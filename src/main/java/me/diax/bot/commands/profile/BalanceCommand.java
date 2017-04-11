@@ -10,7 +10,7 @@ import net.dv8tion.jda.core.entities.Message;
  * If you don't understand this, we are screwed.
  */
 @DiaxCommandDescription(triggers = {"balance", "bal", "currency"})
-public class Balance extends DiaxCommand {
+public class BalanceCommand extends DiaxCommand {
 
     @Override
     public void execute(Message trigger, String args) {

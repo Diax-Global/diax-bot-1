@@ -10,7 +10,7 @@ import net.dv8tion.jda.core.entities.Message;
  * If you don't understand this, we are screwed.
  */
 @DiaxCommandDescription(triggers = {"daily"})
-public class Daily extends DiaxCommand {
+public class DailyCommand extends DiaxCommand {
 
     @Override
     public void execute(Message trigger, String args) {
