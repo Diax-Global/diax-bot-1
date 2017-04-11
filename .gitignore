@@ -1,3 +1,4 @@
 target/
-.idea/
-diax-bot.iml
+*.properties
+*.iml
+dependency-reduced-pom.xml
