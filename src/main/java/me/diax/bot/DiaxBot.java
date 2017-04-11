@@ -79,7 +79,7 @@ public final class DiaxBot implements ComponentProvider, Module {
                         .setToken(properties.getToken())
                         .setStatus(OnlineStatus.ONLINE);
                 if (shards > 1) {
-                    jda = builder.useSharding(i, shards).buildBlocking();
+                    jda = builder.useSharding(i, shards).buildAsync();
                 } else {
                     jda = builder.buildBlocking();
                 }
@@ -87,10 +87,6 @@ public final class DiaxBot implements ComponentProvider, Module {
             }
             if (jda != null) {
                 DiaxBot.SHARDS[i] = jda;
-            }
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException ignored) {
             }
         }
     }
