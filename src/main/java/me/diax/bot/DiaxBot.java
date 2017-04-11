@@ -23,6 +23,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.security.auth.login.LoginException;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -54,7 +55,7 @@ public final class DiaxBot implements ComponentProvider, Module {
     private DiaxBot() {
         ClassLoader classLoader = this.getClass().getClassLoader();
         injector = Guice.createInjector(this);
-        properties = ConfigurationUtils.loadConfiguration(classLoader, "diax.properties", ConfigurationUtils.getDataFolder(), DiaxProperties.class);
+        properties = ConfigurationUtils.loadConfiguration(classLoader, "diax.properties", new File(System.getProperty("user.dir")), DiaxProperties.class);
     }
 
     public static void main(String[] args) {
