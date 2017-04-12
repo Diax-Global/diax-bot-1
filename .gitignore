@@ -2,3 +2,5 @@ target/
 *.properties
 *.iml
 dependency-reduced-pom.xml
+.idea/
+*.log
