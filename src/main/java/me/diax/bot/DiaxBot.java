@@ -17,7 +17,9 @@ import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.OnlineStatus;
 import net.dv8tion.jda.core.entities.Game;
+import net.dv8tion.jda.core.events.ReadyEvent;
 import net.dv8tion.jda.core.exceptions.RateLimitedException;
+import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import org.json.JSONException;
 import org.slf4j.LoggerFactory;
 
@@ -26,15 +28,17 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 
 /**
  * Created by Comporment on 04/04/2017 at 19:45
  * Dev'ving like a sir since 1998. | https://github.com/Comportment
  */
-public final class DiaxBot implements ComponentProvider, Module {
+public final class DiaxBot extends ListenerAdapter implements ComponentProvider, Module {
 
     public static final String VERSION;
     public static JDA[] SHARDS;
+    public static int SHARD_AMOUNT;
 
     static {
         InputStreamReader reader = new InputStreamReader(DiaxBot.class.getResourceAsStream("/version"));
@@ -64,22 +68,28 @@ public final class DiaxBot implements ComponentProvider, Module {
     }
 
     private void main() {
-        initialise(getShardAmount());
+        DiaxBot.SHARD_AMOUNT = this.getShardAmount();
+        this.initialise();
     }
 
-    private void initialise(int shards) {
-        DiaxBot.SHARDS = new JDA[shards];
-        for (int i = 0; i < shards; i++) {
+    public void onReady(ReadyEvent event) {
+        if (event.getJDA().getShardInfo().getShardTotal() > DiaxBot.SHARD_AMOUNT) return;
+        LoggerFactory.getLogger(this.getClass()).info("Users on startup: " + Arrays.stream(SHARDS).flatMap(shard -> shard.getUsers().stream().distinct()).count());
+    }
+
+    private void initialise() {
+        DiaxBot.SHARDS = new JDA[DiaxBot.SHARD_AMOUNT];
+        for (int i = 0; i < DiaxBot.SHARD_AMOUNT; i++) {
             JDA jda = null;
             try {
                 JDABuilder builder = new JDABuilder(AccountType.BOT)
-                        .addEventListener(injector.getInstance(DiaxCommandHandler.class), new DiaxDisconnectListener())
+                        .addEventListener(injector.getInstance(DiaxCommandHandler.class), new DiaxDisconnectListener(), this)
                         .setAudioEnabled(true)
                         .setGame(Game.of(properties.getGame()))
                         .setToken(properties.getToken())
                         .setStatus(OnlineStatus.ONLINE);
-                if (shards > 1) {
-                    jda = builder.useSharding(i, shards).buildAsync();
+                if (DiaxBot.SHARD_AMOUNT > 1) {
+                    jda = builder.useSharding(i, DiaxBot.SHARD_AMOUNT).buildAsync();
                 } else {
                     jda = builder.buildBlocking();
                 }

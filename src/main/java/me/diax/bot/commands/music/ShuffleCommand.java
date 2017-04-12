@@ -16,10 +16,6 @@ public class ShuffleCommand extends DiaxCommand {
     @Override
     public void execute(Message trigger, String truncated) {
         DiaxGuildMusicManager manager = DiaxGuildMusicManager.getManagerFor(trigger.getGuild());
-        if (manager.scheduler.shuffle()) {
-            trigger.getChannel().sendMessage(DiaxUtil.musicEmbed("The queue has been shuffled.")).queue();
-        } else {
-            trigger.getChannel().sendMessage(DiaxUtil.errorEmbed("Could **not** shuffle the queue.")).queue();
-        }
+        trigger.getChannel().sendMessage(DiaxUtil.musicEmbed(manager.scheduler.shuffle() ? "The queue has been shuffled." : "Could **not** shuffle the queue.")).queue();
     }
 }
