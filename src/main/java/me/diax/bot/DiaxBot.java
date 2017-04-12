@@ -40,7 +40,7 @@ public final class DiaxBot extends ListenerAdapter implements ComponentProvider,
     public static final String VERSION;
     public static JDA[] SHARDS;
     public static boolean INITIALISED = false;
-    private final Logger logger = LoggerFactory.getLogger(DiaxBot.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DiaxBot.class);
 
     static {
         InputStreamReader reader = new InputStreamReader(DiaxBot.class.getResourceAsStream("/version"));
@@ -50,7 +50,7 @@ public final class DiaxBot extends ListenerAdapter implements ComponentProvider,
             version = txtReader.readLine();
         } catch (IOException e) {
             version = "Unknown";
-            LoggerFactory.getLogger(DiaxBot.class).error("Could not find the build of diax-bot.");
+            LOGGER.error("Could not find the build of diax-bot.");
         }
         VERSION = version;
     }
@@ -74,9 +74,9 @@ public final class DiaxBot extends ListenerAdapter implements ComponentProvider,
         try {
             synchronized(DiaxBot.class) {
                 while(!DiaxBot.INITIALISED) DiaxBot.class.wait();
-                logger.info("Users on startup: " + Arrays.stream(DiaxBot.SHARDS).flatMap(jda -> jda.getUsers().stream()).distinct().count());
-                logger.info("Guilds on startup: " + Arrays.stream(DiaxBot.SHARDS).flatMap(jda -> jda.getGuilds().stream()).distinct().count());
-                logger.info("Shards on startup: " + DiaxBot.SHARDS.length);
+                LOGGER.info("Users on startup: " + Arrays.stream(DiaxBot.SHARDS).flatMap(jda -> jda.getUsers().stream()).distinct().count());
+                LOGGER.info("Guilds on startup: " + Arrays.stream(DiaxBot.SHARDS).flatMap(jda -> jda.getGuilds().stream()).distinct().count());
+                LOGGER.info("Shards on startup: " + DiaxBot.SHARDS.length);
             }
         } catch (InterruptedException ignored) {}
     }

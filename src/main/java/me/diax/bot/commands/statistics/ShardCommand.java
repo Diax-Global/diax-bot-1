@@ -1,6 +1,5 @@
 package me.diax.bot.commands.statistics;
 
-import me.diax.bot.DiaxBot;
 import me.diax.bot.lib.command.DiaxCommand;
 import me.diax.bot.lib.command.DiaxCommandDescription;
 import me.diax.bot.lib.util.DiaxUtil;
@@ -15,6 +14,6 @@ public class ShardCommand extends DiaxCommand {
 
     @Override
     public void execute(Message trigger, String args) {
-        trigger.getChannel().sendMessage(DiaxUtil.simpleEmbed(String.format("♦ Shard: [%s/%s]", trigger.getGuild() == null ? 0 : DiaxUtil.getShard(trigger.getGuild()), DiaxBot.SHARDS.length)).build()).queue();
+        trigger.getChannel().sendMessage(DiaxUtil.simpleEmbed(String.format("♦ Shard: [%s/%s]", trigger.getGuild() == null ? 0 : DiaxUtil.getShard(trigger.getGuild()), trigger.getJDA().getShardInfo().getShardTotal())).build()).queue();
     }
 }
