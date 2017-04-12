@@ -21,6 +21,7 @@ import net.dv8tion.jda.core.events.ReadyEvent;
 import net.dv8tion.jda.core.exceptions.RateLimitedException;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import org.json.JSONException;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.security.auth.login.LoginException;
@@ -38,7 +39,8 @@ public final class DiaxBot extends ListenerAdapter implements ComponentProvider,
 
     public static final String VERSION;
     public static JDA[] SHARDS;
-    public static int SHARD_AMOUNT;
+    public static boolean INITIALISED = false;
+    private final Logger logger = LoggerFactory.getLogger(DiaxBot.class);
 
     static {
         InputStreamReader reader = new InputStreamReader(DiaxBot.class.getResourceAsStream("/version"));
@@ -68,18 +70,20 @@ public final class DiaxBot extends ListenerAdapter implements ComponentProvider,
     }
 
     private void main() {
-        DiaxBot.SHARD_AMOUNT = this.getShardAmount();
-        this.initialise();
+        this.initialise(getShardAmount());
+        try {
+            synchronized(DiaxBot.class) {
+                while(!DiaxBot.INITIALISED) DiaxBot.class.wait();
+                logger.info("Users on startup: " + Arrays.stream(DiaxBot.SHARDS).flatMap(jda -> jda.getUsers().stream()).distinct().count());
+                logger.info("Guilds on startup: " + Arrays.stream(DiaxBot.SHARDS).flatMap(jda -> jda.getGuilds().stream()).distinct().count());
+                logger.info("Shards on startup: " + DiaxBot.SHARDS.length);
+            }
+        } catch (InterruptedException ignored) {}
     }
 
-    public void onReady(ReadyEvent event) {
-        if (event.getJDA().getShardInfo().getShardTotal() > DiaxBot.SHARD_AMOUNT) return;
-        LoggerFactory.getLogger(this.getClass()).info("Users on startup: " + Arrays.stream(SHARDS).flatMap(shard -> shard.getUsers().stream().distinct()).count());
-    }
-
-    private void initialise() {
-        DiaxBot.SHARDS = new JDA[DiaxBot.SHARD_AMOUNT];
-        for (int i = 0; i < DiaxBot.SHARD_AMOUNT; i++) {
+    private void initialise(final int amount) {
+        DiaxBot.SHARDS = new JDA[amount];
+        for (int i = 0; i < amount; i++) {
             JDA jda = null;
             try {
                 JDABuilder builder = new JDABuilder(AccountType.BOT)
@@ -88,8 +92,8 @@ public final class DiaxBot extends ListenerAdapter implements ComponentProvider,
                         .setGame(Game.of(properties.getGame()))
                         .setToken(properties.getToken())
                         .setStatus(OnlineStatus.ONLINE);
-                if (DiaxBot.SHARD_AMOUNT > 1) {
-                    jda = builder.useSharding(i, DiaxBot.SHARD_AMOUNT).buildAsync();
+                if (amount == 1) {
+                    jda = builder.useSharding(i, amount).buildAsync();
                 } else {
                     jda = builder.buildBlocking();
                 }
@@ -99,6 +103,7 @@ public final class DiaxBot extends ListenerAdapter implements ComponentProvider,
                 DiaxBot.SHARDS[i] = jda;
             }
         }
+        DiaxBot.INITIALISED = true;
     }
 
     private int getShardAmount() {
