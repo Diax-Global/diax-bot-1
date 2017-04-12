@@ -38,7 +38,7 @@ public final class DiaxBot extends ListenerAdapter implements ComponentProvider,
 
     public static final String VERSION;
     public static JDA[] SHARDS;
-    public static boolean INITIALISED = false;
+    public static boolean INITIALISED = true;
     private static final Logger LOGGER = LoggerFactory.getLogger(DiaxBot.class);
 
     static {
@@ -72,7 +72,7 @@ public final class DiaxBot extends ListenerAdapter implements ComponentProvider,
         this.initialise(getShardAmount());
         try {
             synchronized (DiaxBot.class) {
-                while (!DiaxBot.INITIALISED) DiaxBot.class.wait();
+                while (! DiaxBot.INITIALISED) DiaxBot.class.wait();
                 LOGGER.info("Users on startup: " + Arrays.stream(DiaxBot.SHARDS).flatMap(jda -> jda.getUsers().stream()).distinct().count());
                 LOGGER.info("Guilds on startup: " + Arrays.stream(DiaxBot.SHARDS).flatMap(jda -> jda.getGuilds().stream()).distinct().count());
                 LOGGER.info("Shards on startup: " + DiaxBot.SHARDS.length);
@@ -109,11 +109,12 @@ public final class DiaxBot extends ListenerAdapter implements ComponentProvider,
             HttpResponse<JsonNode> request = Unirest.get("https://discordapp.com/api/gateway/bot")
                     .header("Authorization", "Bot " + properties.getToken())
                     .header("Content-Type", "application/json").asJson();
-            return Integer.parseInt(request.getBody().getObject().get("shards").toString()) + 1;
+            return Integer.parseInt(request.getBody().getObject().get("shards").toString());
         } catch (UnirestException | JSONException | NumberFormatException | NullPointerException exception) {
             exception.printStackTrace();
         }
-        return 2;
+        System.exit(1);
+        return 0;
     }
 
     @Override
