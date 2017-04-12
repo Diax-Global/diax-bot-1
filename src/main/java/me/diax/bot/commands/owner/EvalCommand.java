@@ -3,10 +3,13 @@ package me.diax.bot.commands.owner;
 import me.diax.bot.lib.command.DiaxCommand;
 import me.diax.bot.lib.command.DiaxCommandDescription;
 import me.diax.bot.lib.util.DiaxUtil;
+import net.dv8tion.jda.core.EmbedBuilder;
+import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.entities.Message;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
+import java.util.*;
 
 /**
  * Created by Comportment on 07/04/2017.
@@ -29,11 +32,12 @@ public class EvalCommand extends DiaxCommand {
 
     private ScriptEngine addMethods(ScriptEngine engine, Message trigger) {
         engine.put("jda", trigger.getJDA());
-        engine.put("message", trigger);
+        engine.put("this", trigger);
         engine.put("event", trigger);
         engine.put("guild", trigger.getGuild());
         engine.put("channel", trigger.getChannel());
-        engine.put("embed", new net.dv8tion.jda.core.EmbedBuilder());
+        engine.put("message", new MessageBuilder());
+        engine.put("embed", new EmbedBuilder());
         return engine;
     }
 }
