@@ -41,11 +41,11 @@ public abstract class DiaxCommand implements DiaxCommandInterface, Comparable<Di
     }
 
     public int compareTo(DiaxCommand command) {
-        return (getTrigger() + getDescription()).compareTo(command.getTrigger() + command.getDescription());
+        return (this.getTrigger().compareTo(command.getTrigger()));
     }
 
     public String getHelpFormat() {
-        return String.format("%s%s | %s", prefix, getTrigger(), getDescription());
+        return String.format("%s`%s%s ` | `%s `\n", getDonorOnly() ? "*" : "", prefix, getTrigger(), getDescription().equals("") ? "No help available." : getDescription());
     }
 
     public boolean getOwnerOnly() {

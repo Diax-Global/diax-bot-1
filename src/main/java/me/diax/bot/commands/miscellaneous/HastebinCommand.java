@@ -15,6 +15,7 @@ import org.json.JSONException;
 @DiaxCommandDescription(triggers = {"hastebin", "haste"}, minimumArgs = 1)
 public class HastebinCommand extends DiaxCommand {
 
+    //TODO: Host pastes of Diax's site.
     @Override
     public void execute(Message trigger, String args) {
         String paste = paste(args);
