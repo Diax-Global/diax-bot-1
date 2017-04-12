@@ -9,7 +9,7 @@ import net.dv8tion.jda.core.entities.Message;
  * Created by Comportment on 11/04/2017.
  * If you don't understand this, we are screwed.
  */
-@DiaxCommandDescription(triggers = {"balance", "bal", "currency"})
+@DiaxCommandDescription(triggers = {"balance", "bal", "currency"}, requiresProfile = true)
 public class BalanceCommand extends DiaxCommand {
 
     @Override

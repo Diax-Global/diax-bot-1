@@ -56,6 +56,10 @@ public abstract class DiaxCommand implements DiaxCommandInterface, Comparable<Di
         return getCommandDescription().guildOnly();
     }
 
+    public boolean getRequiresProfile() {
+        return getCommandDescription().requiresProfile();
+    }
+
     public boolean getDonorOnly() {
         return getCommandDescription().donorOnly();
     }

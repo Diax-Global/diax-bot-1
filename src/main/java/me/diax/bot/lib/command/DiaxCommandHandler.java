@@ -61,6 +61,9 @@ public class DiaxCommandHandler extends ListenerAdapter {
             message.getChannel().sendMessage(DiaxUtil.errorEmbed("This is an owner only command, baka.")).queue();
             return;
         }
+        if (command.getRequiresProfile() /* && profile query returns null */) {
+            //Register profile for user.
+        }
         try {
             command.execute(message, args);
         } catch (PermissionException e) {

@@ -9,7 +9,7 @@ import net.dv8tion.jda.core.entities.Message;
  * Created by Comportment on 11/04/2017.
  * If you don't understand this, we are screwed.
  */
-@DiaxCommandDescription(triggers = {"daily"})
+@DiaxCommandDescription(triggers = {"daily"}, requiresProfile = true)
 public class DailyCommand extends DiaxCommand {
 
     @Override

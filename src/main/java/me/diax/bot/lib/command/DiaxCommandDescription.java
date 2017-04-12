@@ -22,6 +22,8 @@ public @interface DiaxCommandDescription {
 
     boolean ownerOnly() default false;
 
+    boolean requiresProfile() default false;
+
     String[] triggers() default {};
 
     String description() default "";
