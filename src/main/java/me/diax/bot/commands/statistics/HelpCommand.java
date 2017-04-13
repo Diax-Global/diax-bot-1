@@ -26,7 +26,7 @@ public class HelpCommand extends DiaxCommand {
 
     @Override
     public void execute(Message trigger, String args) {
-        trigger.getChannel().sendMessage(DiaxUtil.defaultEmbed().addField("Commands", "All donor only commands are marked with a `*`\n" +
+        trigger.getChannel().sendMessage(DiaxUtil.defaultEmbed().addField("Commands", "All donor only commands are marked with a `*`\n\n" +
                 commands.getCommands().stream()
                 .map(commands::newInstance)
                 .filter(command -> ! command.getOwnerOnly())

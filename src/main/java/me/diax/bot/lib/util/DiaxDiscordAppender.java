@@ -16,7 +16,7 @@ import java.util.Date;
 public class DiaxDiscordAppender<E> extends AppenderBase<E> {
 
     private static long GUILD_ID = Long.valueOf(DiaxUtil.getGuildID());
-    private static long CHANNEL_ID = Long.valueOf("300926282244554754");
+    private static long CHANNEL_ID = 302048058907295747L;
 
     @Override
     protected void append(E eventObject) {

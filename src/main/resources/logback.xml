@@ -27,5 +27,6 @@
     <root level="Info">
         <appender-ref ref="Console"/>
         <appender-ref ref="File"/>
+        <appender-ref ref="Discord"/>
     </root>
 </configuration>
