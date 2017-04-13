@@ -9,7 +9,6 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import me.diax.bot.lib.audio.DiaxDisconnectListener;
 import me.diax.bot.lib.command.DiaxCommandHandler;
 import me.diax.bot.lib.util.DiaxLogger;
 import net.dv8tion.jda.core.AccountType;
@@ -87,7 +86,7 @@ public final class DiaxBot extends ListenerAdapter implements ComponentProvider,
             JDA jda = null;
             try {
                 JDABuilder builder = new JDABuilder(AccountType.BOT)
-                        .addEventListener(injector.getInstance(DiaxCommandHandler.class), new DiaxDisconnectListener(), this)
+                        .addEventListener(injector.getInstance(DiaxCommandHandler.class), this)
                         .setAudioEnabled(true)
                         .setGame(Game.of(properties.getGame()))
                         .setToken(properties.getToken())
