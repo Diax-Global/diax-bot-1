@@ -17,7 +17,6 @@ public class VoiceKickCommand extends DiaxCommand {
 
     public void execute(Message trigger, String args) {
         trigger.getMentionedUsers().forEach(user -> {
-
             try {
                 Member member  = trigger.getGuild().getMember(user);
                 if (member.getVoiceState().inVoiceChannel()) {
