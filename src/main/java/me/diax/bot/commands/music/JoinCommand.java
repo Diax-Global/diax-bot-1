@@ -9,6 +9,8 @@ import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.exceptions.PermissionException;
 
+import javax.inject.Named;
+
 /**
  * Created by Comportment on 10/04/2017.
  * If you don't understand this, we are screwed.
@@ -28,7 +30,7 @@ public class JoinCommand extends DiaxCommand {
             trigger.getGuild().getAudioManager().openAudioConnection(voiceState.getChannel());
             channel.sendMessage(DiaxUtil.musicEmbed("I have joined your voice channel.")).queue();
         } catch (PermissionException exception) {
-            channel.sendMessage("I could not join your voice channel.").queue();
+            channel.sendMessage(DiaxUtil.errorEmbed("I could not join your voice channel.")).queue();
         }
     }
 }

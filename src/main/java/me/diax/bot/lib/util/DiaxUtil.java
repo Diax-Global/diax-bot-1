@@ -10,6 +10,7 @@ import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.utils.PermissionUtil;
 
 import java.awt.*;
+import java.util.Random;
 
 /**
  * Created by Comporment on 04/04/2017 at 22:55
@@ -22,7 +23,7 @@ public class DiaxUtil {
     }
 
     public static EmbedBuilder defaultEmbed() {
-        return new EmbedBuilder().setColor(new Color(170, 101, 25)).setFooter(DiaxBot.VERSION, "https://cdn.discordapp.com/icons/293889712014360586/32a876d0e467fe7227f50e3bcfc45bd2.jpg");
+        return new EmbedBuilder().setColor(new Color(new Random().nextInt(255), new Random().nextInt(255), new Random().nextInt(255))).setFooter(DiaxBot.VERSION, "https://cdn.discordapp.com/icons/293889712014360586/32a876d0e467fe7227f50e3bcfc45bd2.jpg");
     }
 
     public static EmbedBuilder simpleEmbed(String message) {

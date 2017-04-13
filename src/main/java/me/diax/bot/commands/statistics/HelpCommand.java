@@ -7,6 +7,7 @@ import me.diax.bot.lib.util.DiaxUtil;
 import net.dv8tion.jda.core.entities.Message;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
