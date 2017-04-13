@@ -45,8 +45,8 @@ public class DiaxUtil {
         return "293884638101897216";
     }
 
-    public static String getGuildID() {
-        return "293889712014360586";
+    public static long getGuildID() {
+        return 293889712014360586L;
     }
 
     public static boolean checkPermission(User user, Guild guild, Permission permission) {
