@@ -10,17 +10,14 @@ import net.dv8tion.jda.core.entities.Message;
  * Created by Comportment on 13/04/2017.
  * If you don't understand this, we are screwed.
  */
-@DiaxCommandDescription
+@DiaxCommandDescription(triggers = {"announce"}, ownerOnly = true, minimumArgs = 1)
 public class AnnounceCommand extends DiaxCommand {
 
     @Override
     public void execute(Message trigger, String args) {
         DiaxBot.SHARDS[DiaxUtil.getShard(DiaxUtil.getGuildID())]
                 .getGuildById(DiaxUtil.getGuildID())
-                .getTextChannelById(302006615757029377L)
-                .sendMessage(
-                        DiaxUtil.defaultEmbed()
-                                .setTitle("Diax Official Announcement", trigger.getAuthor().getAvatarUrl())
-                                .setDescription(args).build()).queue();
+                .getTextChannelById(302006615757029377L).sendMessage(
+                DiaxUtil.defaultEmbed().setTitle("Diax Official Announcement", trigger.getAuthor().getAvatarUrl()).setDescription(args).build()).queue();
     }
 }
