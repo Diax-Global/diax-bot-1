@@ -18,7 +18,7 @@ public class SoftbanCommand extends DiaxCommand {
     public void execute(Message trigger, String args) {
         trigger.getMentionedUsers().forEach(user -> {
             try {
-                trigger.getGuild().getController().kick(trigger.getGuild().getMember(user)).queue(_void -> trigger.getGuild().getController().unban(user).queue());
+                trigger.getGuild().getController().ban(trigger.getGuild().getMember(user), 7).queue(_void -> trigger.getGuild().getController().unban(user).queue());
                 trigger.getChannel().sendMessage(DiaxUtil.simpleEmbed(DiaxUtil.makeName(user) + "has been softbanned!").build()).queue();
             } catch (PermissionException exception) {
                 trigger.getChannel().sendMessage(DiaxUtil.errorEmbed("I could not softban " + DiaxUtil.makeName(user))).queue();

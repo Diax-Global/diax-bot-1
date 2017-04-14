@@ -17,9 +17,11 @@ import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.OnlineStatus;
 import net.dv8tion.jda.core.entities.Game;
+import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.exceptions.RateLimitedException;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import org.json.JSONException;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -70,15 +72,6 @@ public final class DiaxBot extends ListenerAdapter implements ComponentProvider,
 
     private void main() {
         this.initialise(getShardAmount());
-        try {
-            synchronized (DiaxBot.class) {
-                while (! DiaxBot.INITIALISED) DiaxBot.class.wait();
-                LOGGER.info("Users on startup: " + Arrays.stream(DiaxBot.SHARDS).flatMap(jda -> jda.getUsers().stream()).distinct().count());
-                LOGGER.info("Guilds on startup: " + Arrays.stream(DiaxBot.SHARDS).flatMap(jda -> jda.getGuilds().stream()).distinct().count());
-                LOGGER.info("Shards on startup: " + DiaxBot.SHARDS.length);
-            }
-        } catch (InterruptedException ignored) {
-        }
     }
 
     private void initialise(final int amount) {
