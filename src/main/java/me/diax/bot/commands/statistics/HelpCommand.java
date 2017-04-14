@@ -7,8 +7,6 @@ import me.diax.bot.lib.util.DiaxUtil;
 import net.dv8tion.jda.core.entities.Message;
 
 import javax.inject.Inject;
-import javax.inject.Named;
-import java.util.Comparator;
 import java.util.stream.Collectors;
 
 /**
@@ -27,12 +25,10 @@ public class HelpCommand extends DiaxCommand {
 
     @Override
     public void execute(Message trigger, String args) {
-        trigger.getChannel().sendMessage(DiaxUtil.defaultEmbed().addField("Commands", "All donor only commands are marked with a `*`\n\n" +
-                commands.getCommands().stream()
-                .map(commands::newInstance)
-                .filter(command -> ! command.getOwnerOnly())
-                .map(DiaxCommand::getHelpFormat)
-                .sorted()
-                .collect(Collectors.joining("\n")), false).addField("Links", String.join("\n", "[Invite me to your server](https://discordapp.com/oauth2/authorize?client_id=295500621862404097&scope=bot&permissions=8)", "[My Discord server](https://discord.gg/c6M8PJZ)", "[My Patreon](https://www.patreon.com/Diax)"), false).build()).queue();
+        trigger.getChannel().sendMessage(
+                DiaxUtil.simpleEmbed(
+                        "Help for Diax: " + DiaxUtil.paste(DiaxUtil.diaxGraffiti() + "\n\n\n\n\n\nCommands: \n\n" + commands.getCommands().stream().map(commands::newInstance).filter(command -> ! command.getOwnerOnly()).map(DiaxCommand::getHelpFormat).sorted().collect(Collectors.joining("\n"))
+                        + "\n\nLinks:\n\n"+ String.join("\n", "Invite Me: https://discordapp.com/oauth2/authorise?client_id=295500621862404097&scope=bot&permissions=8", "My server: https://discord.gg/c6M8P", "My Patreon: https://www.patreon.com/Diax"))
+                ).build()).queue();
     }
 }

@@ -95,4 +95,14 @@ public class DiaxUtil {
             return "An error occurred with uploading the content to hastebin.";
         }
     }
+
+    public static String diaxGraffiti() {
+        return "oooooooooo.    o8o                        \n" +
+                "`888'   `Y8b   `\"'                        \n" +
+                " 888      888 oooo   .oooo.   oooo    ooo \n" +
+                " 888      888 `888  `P  )88b   `88b..8P'  \n" +
+                " 888      888  888   .oP\"888     Y888'    \n" +
+                " 888     d88'  888  d8(  888   .o8\"'88b   \n" +
+                "o888bood8P'   o888o `Y888\"\"8o o88'   888o ";
+    }
 }

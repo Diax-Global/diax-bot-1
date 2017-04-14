@@ -45,7 +45,7 @@ public abstract class DiaxCommand implements DiaxCommandInterface, Comparable<Di
     }
 
     public String getHelpFormat() {
-        return String.format("%s`%s%s ` | `%s `\n", getDonorOnly() ? "*" : "", prefix, getTrigger(), getDescription().equals("") ? "No help available." : getDescription());
+        return String.format("%s%s%s | %s", getDonorOnly() ? "*" : "", prefix, getTrigger(), getDescription().equals("") ? "No help available." : getDescription());
     }
 
     public boolean getOwnerOnly() {
