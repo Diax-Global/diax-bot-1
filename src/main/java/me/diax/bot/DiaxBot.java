@@ -9,6 +9,8 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import me.diax.bot.lib.ComponentProvider;
+import me.diax.bot.lib.DiaxProperties;
 import me.diax.bot.lib.command.DiaxCommandHandler;
 import me.diax.bot.lib.util.DiaxLogger;
 import me.diax.bot.tasks.DiaxBotListUpdate;

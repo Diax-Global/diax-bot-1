@@ -1,4 +1,4 @@
-package me.diax.bot;
+package me.diax.bot.lib;
 
 /**
  * Created by Comporment on 04/04/2017 at 19:57

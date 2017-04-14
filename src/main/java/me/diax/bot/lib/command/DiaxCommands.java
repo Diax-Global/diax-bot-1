@@ -1,7 +1,7 @@
 package me.diax.bot.lib.command;
 
-import me.diax.bot.ComponentProvider;
-import me.diax.bot.DiaxProperties;
+import me.diax.bot.lib.ComponentProvider;
+import me.diax.bot.lib.DiaxProperties;
 import org.reflections.Reflections;
 
 import javax.inject.Inject;

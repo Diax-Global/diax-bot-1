@@ -1,4 +1,4 @@
-package me.diax.bot;
+package me.diax.bot.lib;
 
 import com.knockturnmc.api.util.NamedProperties;
 import com.knockturnmc.api.util.Property;
