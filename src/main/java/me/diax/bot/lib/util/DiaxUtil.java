@@ -97,16 +97,24 @@ public class DiaxUtil {
     }
 
     public static String diaxGraffiti() {
-        return "oooooooooo.    o8o                        \n" +
-                "`888'   `Y8b   `\"'                        \n" +
-                " 888      888 oooo   .oooo.   oooo    ooo \n" +
-                " 888      888 `888  `P  )88b   `88b..8P'  \n" +
-                " 888      888  888   .oP\"888     Y888'    \n" +
-                " 888     d88'  888  d8(  888   .o8\"'88b   \n" +
-                "o888bood8P'   o888o `Y888\"\"8o o88'   888o ";
+        return "oooooooooo.    o8o                           \n" +
+                "`888'   `Y8b   `\"'                         \n" +
+                " 888      888 oooo   .oooo.   oooo    ooo   \n" +
+                " 888      888 `888  `P  )88b   `88b..8P'    \n" +
+                " 888      888  888   .oP\"888     Y888'     \n" +
+                " 888     d88'  888  d8(  888   .o8\"'88b    \n" +
+                "o888bood8P'   o888o `Y888\"\"8o o88'   888o   ";
     }
 
     public static String getAvatarUrl() {
         return "https://cdn.discordapp.com/icons/293889712014360586/32a876d0e467fe7227f50e3bcfc45bd2.jpg";
+    }
+
+    public static String getAnimal(String type) {
+        try {
+            return Unirest.get("http://shibe.online/api/" + type + "/?count=1").header("User-Agent", "Diax").header("Content-Type", "application/json").asJson().getBody().getArray().getString(0);
+        } catch (UnirestException exception) {
+            return "An error occurred.";
+        }
     }
 }
