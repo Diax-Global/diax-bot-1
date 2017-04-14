@@ -14,6 +14,6 @@ public class DailyCommand extends DiaxCommand {
 
     @Override
     public void execute(Message trigger, String args) {
-        trigger.getChannel().sendMessage(DiaxUtil.defaultEmbed().setDescription("SoonTM").build()).queue();
+        trigger.getChannel().sendMessage(DiaxUtil.defaultEmbed().setDescription("Soon™").build()).queue();
     }
 }
