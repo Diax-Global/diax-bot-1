@@ -4,7 +4,6 @@ import com.google.inject.Binder;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Module;
-import com.google.inject.name.Names;
 import com.knockturnmc.api.util.ConfigurationUtils;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
@@ -12,30 +11,23 @@ import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import me.diax.bot.lib.command.DiaxCommandHandler;
 import me.diax.bot.lib.util.DiaxLogger;
-import me.diax.bot.lib.util.DiaxUtil;
-import me.diax.bot.lib.util.scheduler.DiaxTask;
 import me.diax.bot.tasks.DiaxBotListUpdate;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.OnlineStatus;
 import net.dv8tion.jda.core.entities.Game;
-import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.exceptions.RateLimitedException;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import org.json.JSONException;
-import org.json.JSONObject;
-import org.mortbay.util.ajax.JSON;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import sun.security.provider.SHA;
 
 import javax.security.auth.login.LoginException;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 /**

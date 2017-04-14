@@ -2,7 +2,7 @@ package me.diax.bot.tasks;
 
 import com.mashape.unirest.http.Unirest;
 import me.diax.bot.DiaxBot;
-import me.diax.bot.lib.util.scheduler.DiaxTask;
+import me.diax.bot.lib.scheduler.DiaxTask;
 import net.dv8tion.jda.core.JDA;
 import org.json.JSONObject;
 

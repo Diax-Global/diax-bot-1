@@ -1,4 +1,4 @@
-package me.diax.bot.lib.util.scheduler;
+package me.diax.bot.lib.scheduler;
 
 import me.diax.bot.DiaxBot;
 

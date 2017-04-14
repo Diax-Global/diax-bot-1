@@ -1,4 +1,4 @@
-package me.diax.bot.lib.util.scheduler;
+package me.diax.bot.lib.scheduler;
 
 /**
  * Created by Comportment on 14/04/2017.
