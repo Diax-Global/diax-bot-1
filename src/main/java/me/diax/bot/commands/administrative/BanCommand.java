@@ -20,7 +20,7 @@ public class BanCommand extends DiaxCommand {
         trigger.getMentionedUsers().forEach(user -> {
             try {
                 trigger.getGuild().getController().ban(trigger.getGuild().getMember(user), 7).queue();
-                trigger.getChannel().sendMessage(DiaxUtil.simpleEmbed(DiaxUtil.makeName(user) + "has been banned!.").build()).queue();
+                trigger.getChannel().sendMessage(DiaxUtil.simpleEmbed(DiaxUtil.makeName(user) + " has been banned!.").build()).queue();
             } catch (PermissionException exception) {
                 trigger.getChannel().sendMessage(DiaxUtil.errorEmbed("I could not ban " + DiaxUtil.makeName(user))).queue();
             }

@@ -14,7 +14,7 @@ public abstract class DiaxCommand implements DiaxCommandInterface, Comparable<Di
     //@Named(value = "me.diax.commands.prefix")
     private String prefix = "<<";
 
-    public abstract void execute(Message trigger, String truncated);
+    public abstract void execute(Message trigger, String args);
 
     private DiaxCommandDescription getCommandDescription() {
         return getClass().getAnnotation(DiaxCommandDescription.class);

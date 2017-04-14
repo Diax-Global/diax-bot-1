@@ -1,5 +1,7 @@
 package me.diax.bot.lib.util;
 
+import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.exceptions.UnirestException;
 import me.diax.bot.DiaxBot;
 import me.diax.bot.lib.audio.DiaxAudioTrack;
 import net.dv8tion.jda.core.EmbedBuilder;
@@ -8,6 +10,7 @@ import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.MessageEmbed;
 import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.utils.PermissionUtil;
+import org.json.JSONException;
 
 import java.awt.*;
 import java.util.Random;
@@ -75,5 +78,21 @@ public class DiaxUtil {
         }
         result[lastIndex] = s.substring(j);
         return result;
+    }
+
+    public static String paste(String content) {
+        try {
+            String pasteToken = Unirest.post("https://hastebin.com/documents")
+                    .header("User-Agent", "Diax")
+                    .header("Content-Type", "text/plain")
+                    .body(content)
+                    .asJson()
+                    .getBody()
+                    .getObject()
+                    .getString("key");
+            return "https://hastebin.com/" + pasteToken;
+        } catch (UnirestException |JSONException exception) {
+            return "An error occurred with uploading the content to hastebin.";
+        }
     }
 }

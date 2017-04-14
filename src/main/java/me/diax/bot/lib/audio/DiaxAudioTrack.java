@@ -2,6 +2,8 @@ package me.diax.bot.lib.audio;
 
 
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
+import com.sedmelluq.discord.lavaplayer.track.AudioTrackInfo;
+import me.diax.bot.lib.util.DiaxUtil;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.entities.User;
 
@@ -31,6 +33,11 @@ public class DiaxAudioTrack {
 
     public TextChannel getChannel() {
         return channel;
+    }
+
+    public String getQueueFormat() {
+        AudioTrackInfo info = track.getInfo();
+        return String.format(" %s by %s, requested by %s", info.title, info.author, DiaxUtil.makeName(getRequester()));
     }
 
     @Override

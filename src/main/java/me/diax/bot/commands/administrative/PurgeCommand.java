@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
  * Created by Comportment on 13/04/2017.
  * If you don't understand this, we are screwed.
  */
-@DiaxCommandDescription(triggers = {"purge", "clean", "clear"}, minimumArgs = 1, guildOnly = true, permission = Permission.MESSAGE_MANAGE)
+@DiaxCommandDescription(triggers = {"purge", "clean", "clear", "prune", "cls"}, minimumArgs = 1, guildOnly = true, permission = Permission.MESSAGE_MANAGE)
 public class PurgeCommand extends DiaxCommand {
 
     @Override

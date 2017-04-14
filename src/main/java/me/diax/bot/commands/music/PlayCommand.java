@@ -16,7 +16,7 @@ import net.dv8tion.jda.core.entities.Message;
  * Created by Comportment on 05/04/2017.
  * If you don't understand this, we are screwed.
  */
-@DiaxCommandDescription(triggers = {"play", "queue", "search"}, minimumArgs = 1, guildOnly = true, description = "Plays the given URL/Query provided.")
+@DiaxCommandDescription(triggers = {"play", "search"}, minimumArgs = 1, guildOnly = true, description = "Plays the given URL/Query provided.")
 public class PlayCommand extends DiaxCommand {
 
     @Override
