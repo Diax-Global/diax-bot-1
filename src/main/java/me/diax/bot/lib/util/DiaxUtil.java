@@ -26,7 +26,7 @@ public class DiaxUtil {
     }
 
     public static EmbedBuilder defaultEmbed() {
-        return new EmbedBuilder().setColor(new Color(new Random().nextInt(255), new Random().nextInt(255), new Random().nextInt(255))).setFooter(DiaxBot.VERSION, "https://cdn.discordapp.com/icons/293889712014360586/32a876d0e467fe7227f50e3bcfc45bd2.jpg");
+        return new EmbedBuilder().setColor(new Color(new Random().nextInt(255), new Random().nextInt(255), new Random().nextInt(255))).setFooter(DiaxBot.VERSION, getAvatarUrl());
     }
 
     public static EmbedBuilder simpleEmbed(String message) {
@@ -104,5 +104,9 @@ public class DiaxUtil {
                 " 888      888  888   .oP\"888     Y888'    \n" +
                 " 888     d88'  888  d8(  888   .o8\"'88b   \n" +
                 "o888bood8P'   o888o `Y888\"\"8o o88'   888o ";
+    }
+
+    public static String getAvatarUrl() {
+        return "https://cdn.discordapp.com/icons/293889712014360586/32a876d0e467fe7227f50e3bcfc45bd2.jpg";
     }
 }
