@@ -17,6 +17,8 @@ public final class DiaxProperties extends NamedProperties {
     private String ignoredCommands;
     @Property(value = "diax.game", defaultvalue = "<<help")
     private String game;
+    @Property(value = "diax.walshlist")
+    private String walshlist;
 
     public String getToken() {
         return token;
@@ -32,5 +34,9 @@ public final class DiaxProperties extends NamedProperties {
 
     public String getIgnoredCommands() {
         return ignoredCommands;
+    }
+
+    public String getWalshlist() {
+        return walshlist;
     }
 }
