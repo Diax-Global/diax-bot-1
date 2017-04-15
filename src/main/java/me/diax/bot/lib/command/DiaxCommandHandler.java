@@ -1,7 +1,7 @@
 package me.diax.bot.lib.command;
 
 import me.diax.bot.DiaxBot;
-import me.diax.bot.DiaxProperties;
+import me.diax.bot.lib.DiaxProperties;
 import me.diax.bot.lib.util.DiaxUtil;
 import net.dv8tion.jda.core.entities.ChannelType;
 import net.dv8tion.jda.core.entities.Message;

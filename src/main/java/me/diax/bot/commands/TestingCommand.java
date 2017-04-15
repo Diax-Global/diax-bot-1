@@ -14,6 +14,7 @@ public class TestingCommand extends DiaxCommand {
     /**
      * The message which triggered the command, the command args minus the prefix
      */
+    @Override
     public void execute(Message trigger, String truncated) {
         trigger.getChannel().sendMessage(truncated).queue();
     }

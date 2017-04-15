@@ -4,25 +4,24 @@ import com.google.inject.Binder;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Module;
-import com.google.inject.name.Names;
 import com.knockturnmc.api.util.ConfigurationUtils;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import me.diax.bot.lib.ComponentProvider;
+import me.diax.bot.lib.DiaxProperties;
 import me.diax.bot.lib.command.DiaxCommandHandler;
 import me.diax.bot.lib.util.DiaxLogger;
-import me.diax.bot.lib.util.DiaxUtil;
+import me.diax.bot.tasks.DiaxBotListUpdate;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.OnlineStatus;
 import net.dv8tion.jda.core.entities.Game;
-import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.exceptions.RateLimitedException;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import org.json.JSONException;
-import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,7 +30,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Comporment on 04/04/2017 at 19:45
@@ -42,7 +41,7 @@ public final class DiaxBot extends ListenerAdapter implements ComponentProvider,
     public static final String VERSION;
     public static JDA[] SHARDS;
     public static boolean INITIALISED = true;
-    private static final Logger LOGGER = LoggerFactory.getLogger(DiaxBot.class);
+    public static final Logger LOGGER = LoggerFactory.getLogger(DiaxBot.class);
 
     static {
         InputStreamReader reader = new InputStreamReader(DiaxBot.class.getResourceAsStream("/version"));
@@ -73,6 +72,7 @@ public final class DiaxBot extends ListenerAdapter implements ComponentProvider,
 
     private void main() {
         this.initialise(getShardAmount());
+        new DiaxBotListUpdate().repeat(TimeUnit.SECONDS.toMillis(5), TimeUnit.MINUTES.toMillis(5));
     }
 
     private void initialise(final int amount) {
@@ -88,8 +88,8 @@ public final class DiaxBot extends ListenerAdapter implements ComponentProvider,
                         .setStatus(OnlineStatus.ONLINE);
                 if (SHARDS.length >= 3)
                     builder.useSharding(i, SHARDS.length);
-                jda = builder.buildAsync();
-            } catch (LoginException | RateLimitedException ignored) {
+                jda = builder.buildBlocking();
+            } catch (LoginException | RateLimitedException | InterruptedException ignored) {
             }
             if (jda != null) {
                 DiaxBot.SHARDS[i] = jda;
