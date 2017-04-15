@@ -9,8 +9,6 @@ import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.exceptions.PermissionException;
 
-import javax.inject.Named;
-
 /**
  * Created by Comportment on 10/04/2017.
  * If you don't understand this, we are screwed.

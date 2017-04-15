@@ -16,16 +16,15 @@ public abstract class DiaxTask implements Runnable {
         this.taskName = "DiaxTask-" + System.currentTimeMillis();
     }
 
-    public void delay(long delay){
+    public void delay(long delay) {
         DiaxScheduler.delayTask(this, delay);
     }
 
-    public boolean repeat(long delay, long interval){
+    public boolean repeat(long delay, long interval) {
         return DiaxScheduler.scheduleRepeating(this, taskName, delay, interval);
     }
 
-    public boolean cancel(){
+    public boolean cancel() {
         return DiaxScheduler.cancelTask(taskName);
     }
-
 }

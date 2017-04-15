@@ -15,7 +15,7 @@ import java.time.temporal.ChronoUnit;
 public class PingCommand extends DiaxCommand {
 
     @Override
-    public void execute(Message trigger, String truncated) {
+    public void execute(Message trigger, String args) {
         trigger.getChannel().sendMessage(DiaxUtil.defaultEmbed()
                 .setDescription("⏱ Pinging...").build())
                 .queue(message -> message.editMessage(DiaxUtil.defaultEmbed().setDescription(

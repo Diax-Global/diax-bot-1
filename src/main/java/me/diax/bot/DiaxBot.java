@@ -39,9 +39,9 @@ import java.util.concurrent.TimeUnit;
 public final class DiaxBot extends ListenerAdapter implements ComponentProvider, Module {
 
     public static final String VERSION;
+    public static final Logger LOGGER = LoggerFactory.getLogger(DiaxBot.class);
     public static JDA[] SHARDS;
     public static boolean INITIALISED = true;
-    public static final Logger LOGGER = LoggerFactory.getLogger(DiaxBot.class);
 
     static {
         InputStreamReader reader = new InputStreamReader(DiaxBot.class.getResourceAsStream("/version"));

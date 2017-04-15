@@ -15,7 +15,7 @@ import net.dv8tion.jda.core.entities.Message;
 public class StopCommand extends DiaxCommand {
 
     @Override
-    public void execute(Message trigger, String truncated) {
+    public void execute(Message trigger, String args) {
         DiaxGuildMusicManager manager = DiaxGuildMusicManager.getManagerFor(trigger.getGuild());
         manager.scheduler.stop();
         trigger.getChannel().sendMessage(DiaxUtil.musicEmbed("Playback has been stopped.")).queue();

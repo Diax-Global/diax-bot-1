@@ -13,7 +13,7 @@ import net.dv8tion.jda.core.entities.Message;
 @DiaxCommandDescription(triggers = {"unban", "uban"}, permission = Permission.BAN_MEMBERS, guildOnly = true, minimumArgs = 1, ownerOnly = true)
 public class UnbanCommand extends DiaxCommand {
 
-    @Deprecated //Not working.
+    @Deprecated
     @Override
     public void execute(Message trigger, String truncated) {
         trigger.getMentionedUsers().forEach(user -> {

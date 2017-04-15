@@ -24,7 +24,7 @@ public class StatisticsCommand extends DiaxCommand {
         trigger.getChannel().sendMessage(
                 DiaxUtil.simpleEmbed(
                         String.format("**Developers:**\n[Comportment#9489](https://github.com/Comportment)- Diax Bot command library and commands.\n[Crystal#3166](https://github.com/CrystalMare)- Backend, Dependency Injection and Diax Service.\n[Nomsy#7453](https://github.com/Truency)- Diax Site developer and designer.\n[Reece#7982](https://github.com/ReeceyBoi81)- Database management.\n[NachtRaben#8307](https://github.com/NachtRaben)- Music logic, general bugfixes.\n\n **Information:**\n\uD83D\uDD2E Memory Usage: %s\n\uD83D\uDCD6 Library: JDA-%s\n♦ Shards: %s\n\uD83D\uDC64 Guilds: %s\n\uD83D\uDCDD Channels: %s\n\uD83D\uDC65 Users: %s",
-                                ((Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory())/1024/1024) + "Mb",
+                                ((Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1024 / 1024) + "Mb",
                                 JDAInfo.VERSION,
                                 DiaxBot.SHARDS.length,
                                 shards.stream().mapToLong(jda -> jda.getGuilds().size()).sum(),

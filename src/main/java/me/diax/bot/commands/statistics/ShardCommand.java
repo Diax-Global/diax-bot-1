@@ -6,8 +6,6 @@ import me.diax.bot.lib.command.DiaxCommandDescription;
 import me.diax.bot.lib.util.DiaxUtil;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.Message;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Created by Comportment on 11/04/2017.
@@ -15,8 +13,6 @@ import org.slf4j.LoggerFactory;
  */
 @DiaxCommandDescription(triggers = {"shard"})
 public class ShardCommand extends DiaxCommand {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(ShardCommand.class);
 
     @Override
     public void execute(Message trigger, String args) {

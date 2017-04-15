@@ -14,7 +14,7 @@ import net.dv8tion.jda.core.entities.Message;
 public class SkipCommand extends DiaxCommand {
 
     @Override
-    public void execute(Message trigger, String truncated) {
+    public void execute(Message trigger, String args) {
         DiaxGuildMusicManager manager = DiaxGuildMusicManager.getManagerFor(trigger.getGuild());
         if (! manager.scheduler.skip()) {
             trigger.getChannel().sendMessage(DiaxUtil.errorEmbed("Could **not** skip the track.")).queue();

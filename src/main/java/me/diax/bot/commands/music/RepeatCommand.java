@@ -14,7 +14,7 @@ import net.dv8tion.jda.core.entities.Message;
 public class RepeatCommand extends DiaxCommand {
 
     @Override
-    public void execute(Message trigger, String truncated) {
+    public void execute(Message trigger, String args) {
         DiaxGuildMusicManager manager = DiaxGuildMusicManager.getManagerFor(trigger.getGuild());
         manager.scheduler.setRepeating(! manager.scheduler.isRepeating());
         trigger.getChannel().sendMessage(DiaxUtil.musicEmbed(String.format("The track is %s repeating.", manager.scheduler.isRepeating() ? "now" : "no longer"))).queue();
