@@ -2,10 +2,7 @@ package me.diax.bot.lib.command;
 
 import net.dv8tion.jda.core.Permission;
 
-import java.lang.annotation.Documented;
-import java.lang.annotation.Inherited;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.*;
 
 /**
  * Created by Comporment on 04/04/2017 at 22:22
@@ -27,6 +24,8 @@ public @interface DiaxCommandDescription {
     String[] triggers() default {};
 
     String description() default "";
+
+    CommandProperty[] properties();
 
     Permission permission() default Permission.MESSAGE_WRITE;
 

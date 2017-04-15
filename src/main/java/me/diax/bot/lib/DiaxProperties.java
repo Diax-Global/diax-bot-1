@@ -3,6 +3,10 @@ package me.diax.bot.lib;
 import com.knockturnmc.api.util.NamedProperties;
 import com.knockturnmc.api.util.Property;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 /**
  * Created by Comporment on 04/04/2017 at 20:02
  * Dev'ving like a sir since 1998. | https://github.com/Comportment
@@ -24,8 +28,8 @@ public final class DiaxProperties extends NamedProperties {
         return token;
     }
 
-    public String getPrefix() {
-        return prefix;
+    public List<String> getPrefix() {
+        return Stream.of(prefix.split(",")).map(String::trim).collect(Collectors.toList());
     }
 
     public String getGame() {
