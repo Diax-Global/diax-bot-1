@@ -17,7 +17,7 @@ public class TestingCommand extends DiaxCommand {
     private String testing;
 
     @Inject
-    public TestingCommand(@Named("diax.botlist") String botlist) {
+    public TestingCommand(@Named("diax.walshlist") String botlist) {
         this.testing = botlist;
     }
     /**
