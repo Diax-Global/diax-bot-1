@@ -66,7 +66,7 @@ public class DiaxTrackScheduler extends AudioEventAdapter implements Runnable {
     }
 
     public boolean shuffle() {
-        if (! queue.isEmpty()) {
+        if (!queue.isEmpty()) {
             List<DiaxAudioTrack> tracks = new ArrayList<>();
             queue.drainTo(tracks);
             Collections.shuffle(tracks);
@@ -81,7 +81,7 @@ public class DiaxTrackScheduler extends AudioEventAdapter implements Runnable {
         if (repeating) {
             if (currentTrack != null)
                 play(currentTrack.clone());
-            else if (! queue.isEmpty())
+            else if (!queue.isEmpty())
                 play(this.queue.poll());
         } else if (queue.isEmpty()) {
             if (currentTrack != null) {
@@ -115,9 +115,9 @@ public class DiaxTrackScheduler extends AudioEventAdapter implements Runnable {
         VoiceChannel vc = null;
         if (member != null && member.getVoiceState().inVoiceChannel()) {
             vc = member.getVoiceState().getChannel();
-        } else if (! guild.getVoiceChannels().isEmpty()) {
+        } /*else if (!guild.getVoiceChannels().isEmpty()) {
             vc = guild.getVoiceChannels().get(0);
-        }
+        } */
         return vc;
     }
 
@@ -125,7 +125,7 @@ public class DiaxTrackScheduler extends AudioEventAdapter implements Runnable {
         Guild guild = this.manager.guild;
         Member member = guild.getMember(currentTrack.getRequester());
         VoiceChannel voiceChannel = getVoiceChannel(guild, member);
-        if (! guild.getAudioManager().isConnected() || this.queue.isEmpty()) {
+        if (!guild.getAudioManager().isConnected() || this.queue.isEmpty() && voiceChannel != null) {
             try {
                 guild.getAudioManager().openAudioConnection(voiceChannel);
             } catch (PermissionException exception) {
@@ -143,7 +143,7 @@ public class DiaxTrackScheduler extends AudioEventAdapter implements Runnable {
     public void onTrackStart(AudioPlayer player, AudioTrack track) {
         logger.debug("Starting the player.");
         if (joinVoiceChannel()) {
-            if (! repeating) {
+            if (!repeating) {
                 AudioTrackInfo info = this.currentTrack.getTrack().getInfo();
                 User requester = currentTrack.getRequester();
                 currentTrack.getChannel().sendMessage(DiaxUtil.musicEmbed(String.format("Now playing: `%s ` by `%s `\nRequested by: `%s `", info.title, info.author, DiaxUtil.makeName(requester)))).queue();
@@ -199,7 +199,7 @@ public class DiaxTrackScheduler extends AudioEventAdapter implements Runnable {
                 paused = false;
             }
             /* If we aren't paused, but we're the only one in the channel, set pause state */
-            else if (currentTrack != null && connected && channel.getMembers().size() == 1 && ! paused) {
+            else if (currentTrack != null && connected && channel.getMembers().size() == 1 && !paused) {
                 manager.player.setPaused(true);
                 paused = true;
             }
@@ -210,7 +210,7 @@ public class DiaxTrackScheduler extends AudioEventAdapter implements Runnable {
                 paused = false;
             }
             /* If we aren't paused or stopped, increment timeout period */
-            else if (! paused && ! stopped) {
+            else if (!paused && !stopped) {
                 disconnectTime = System.currentTimeMillis() + timeout;
             }
             try {

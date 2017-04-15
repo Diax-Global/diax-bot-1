@@ -20,9 +20,10 @@ import net.dv8tion.jda.core.entities.Message;
 public class PlayCommand extends DiaxCommand {
 
     @Override
-    public void execute(Message trigger, String args) {
+    public void execute(Message trigger, String truncated) {
         DiaxGuildMusicManager manager = DiaxGuildMusicManager.getManagerFor(trigger.getGuild());
-        query(manager, trigger, args);
+        if(trigger.getGuild().getMember(trigger.getAuthor()).getVoiceState().inVoiceChannel())
+            query(manager, trigger, truncated);
     }
 
     private void query(DiaxGuildMusicManager manager, Message message, String query) {
