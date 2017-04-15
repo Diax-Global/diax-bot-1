@@ -15,10 +15,11 @@ import net.dv8tion.jda.core.entities.VoiceChannel;
 @DiaxCommandDescription(triggers = {"voicekick", "vkick"}, permission = Permission.KICK_MEMBERS, guildOnly = true, minimumArgs = 1)
 public class VoiceKickCommand extends DiaxCommand {
 
+    @Override
     public void execute(Message trigger, String args) {
         trigger.getMentionedUsers().forEach(user -> {
             try {
-                Member member  = trigger.getGuild().getMember(user);
+                Member member = trigger.getGuild().getMember(user);
                 if (member.getVoiceState().inVoiceChannel()) {
                     trigger.getGuild().getController().createVoiceChannel("..").queue(voice -> trigger.getGuild().getController().moveVoiceMember(member, ((VoiceChannel) voice)).queue(_void -> voice.delete().queue()));
                 } else {

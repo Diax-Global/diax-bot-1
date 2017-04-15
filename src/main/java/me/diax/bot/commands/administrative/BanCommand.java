@@ -4,7 +4,6 @@ import me.diax.bot.lib.command.DiaxCommand;
 import me.diax.bot.lib.command.DiaxCommandDescription;
 import me.diax.bot.lib.util.DiaxUtil;
 import net.dv8tion.jda.core.Permission;
-import net.dv8tion.jda.core.entities.Channel;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.exceptions.PermissionException;
 

@@ -91,7 +91,7 @@ public class DiaxUtil {
                     .getObject()
                     .getString("key");
             return "https://hastebin.com/" + pasteToken;
-        } catch (UnirestException |JSONException exception) {
+        } catch (UnirestException | JSONException exception) {
             return "An error occurred with uploading the content to hastebin.";
         }
     }

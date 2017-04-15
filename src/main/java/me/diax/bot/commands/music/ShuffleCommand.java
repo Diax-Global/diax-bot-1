@@ -14,7 +14,7 @@ import net.dv8tion.jda.core.entities.Message;
 public class ShuffleCommand extends DiaxCommand {
 
     @Override
-    public void execute(Message trigger, String truncated) {
+    public void execute(Message trigger, String args) {
         DiaxGuildMusicManager manager = DiaxGuildMusicManager.getManagerFor(trigger.getGuild());
         trigger.getChannel().sendMessage(DiaxUtil.musicEmbed(manager.scheduler.shuffle() ? "The queue has been shuffled." : "Could **not** shuffle the queue.")).queue();
     }

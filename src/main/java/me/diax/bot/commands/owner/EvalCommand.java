@@ -9,7 +9,6 @@ import net.dv8tion.jda.core.entities.Message;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
-import java.util.*;
 
 /**
  * Created by Comportment on 07/04/2017.
@@ -19,11 +18,11 @@ import java.util.*;
 public class EvalCommand extends DiaxCommand {
 
     @Override
-    public void execute(Message trigger, String truncated) {
+    public void execute(Message trigger, String args) {
         ScriptEngine engine = this.addMethods(new ScriptEngineManager().getEngineByName("nashorn"), trigger);
         String output;
         try {
-            output = "" + engine.eval(String.join("\n", "load('nashorn:mozilla_compat.js');", "imports = new JavaImporter(java.util, java.io);", "(function(){", "with(imports){", truncated, "}", "})()"));
+            output = "" + engine.eval(String.join("\n", "load('nashorn:mozilla_compat.js');", "imports = new JavaImporter(java.util, java.io);", "(function(){", "with(imports){", args, "}", "})()"));
         } catch (Exception exception) {
             output = exception.getMessage();
         }

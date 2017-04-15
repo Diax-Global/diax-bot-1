@@ -32,6 +32,7 @@ public class DiaxBotListUpdate extends DiaxTask {
                     .header("Authorization", "kUzuzrgDDTLUaR.QEBDwPgnCEpUEvZPFQlZnDdQdWzYXnWKRukkgqxJUNAwfwiLktIxWLl.EKWyXPfMgqWnGrWycuViRaT-tzvnh")
                     .header("Content-Type", "application/json")
                     .body(object).asJson().getStatusText());
-        } catch (Exception ignored){}
+        } catch (Exception ignored) {
+        }
     }
 }
